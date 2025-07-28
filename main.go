@@ -32,6 +32,8 @@ type AuthResponse struct {
 	Message  string   `xml:"Message"`
 }
 
+var Version = "dev-build"
+
 func zjuWebVPNLogin(username, password string) (string, []*http.Cookie, error) {
 	jar, err := cookiejar.New(nil)
 	if err != nil {
@@ -161,7 +163,9 @@ func main() {
 	var listenHost string
 	var listenPort int
 
-	flag.StringVar(&containerID, "container-id", "", "ZJUCTF container ID")
+	fmt.Fprintf(os.Stderr, "ZJUCTFTools %s - ZJUCTF WebSocket Proxy\n\n", Version)
+
+	flag.StringVar(&containerID, "container-id", "", "ZJUCTF container ID (for example: zjusec-com-s-2023-01)")
 	flag.StringVar(&username, "username", "", "ZJU WebVPN username")
 	flag.StringVar(&password, "password", "", "ZJU WebVPN password")
 	flag.StringVar(&listenHost, "listen-host", "127.0.0.1", "Listen host")
