@@ -18,6 +18,7 @@ import (
 	"net/url"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/gorilla/websocket"
 )
@@ -113,11 +114,32 @@ func handleConnection(conn net.Conn, wsURL string, cookie string) {
 	header := http.Header{}
 	header.Set("Cookie", "TWFID="+cookie)
 
-	wsConn, _, err := websocket.DefaultDialer.Dial(wsURL, header)
-	if err != nil {
-		log.Printf("[ERROR] WebSocket连接失败: %v", err)
-		return
+	var wsConn *websocket.Conn
+	var err error
+
+	dialer := websocket.Dialer{
+		HandshakeTimeout: 3 * 1e9, // 3 秒超时
 	}
+
+	maxRetries := 5
+	retries := 0
+
+	for {
+		wsConn, _, err = dialer.Dial(wsURL, header)
+		if err != nil {
+			retries++
+			if retries >= maxRetries {
+				log.Printf("[ERROR] WebSocket 连接失败，已重试 %d 次，放弃连接: %v", retries, err)
+				return
+			}
+			log.Printf("[WARN] WebSocket 连接失败（第 %d 次），2 秒后重试: %v", retries, err)
+			time.Sleep(2 * time.Second)
+			continue
+		}
+		log.Printf("[WS] 已连接到 WebSocket: %s", wsURL)
+		break
+	}
+
 	defer wsConn.Close()
 
 	errCh := make(chan error, 2)
