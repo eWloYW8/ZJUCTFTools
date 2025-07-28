@@ -165,7 +165,7 @@ func main() {
 
 	fmt.Fprintf(os.Stderr, "ZJUCTFTools %s - ZJUCTF WebSocket Proxy\n\n", Version)
 
-	flag.StringVar(&containerID, "container-id", "", "ZJUCTF container ID (for example: zjusec-com-s-2023-01)")
+	flag.StringVar(&containerID, "container-id", "", "ZJUCTF container ID (for example: ec45c945-9352-4d27-aba5-549368d35896)")
 	flag.StringVar(&username, "username", "", "ZJU WebVPN username")
 	flag.StringVar(&password, "password", "", "ZJU WebVPN password")
 	flag.StringVar(&listenHost, "listen-host", "127.0.0.1", "Listen host")
