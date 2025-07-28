@@ -4,6 +4,8 @@ ZJUCTFTools 是一个用于连接 [ZJUCTF](https://ctf.zjusec.com/) 平台容器
 
 自动登录浙江大学 WebVPN，建立本地 TCP 到容器题目的 WebSocket 隧道，可以直接使用本地端口访问题目服务，无需手动配置代理或使用 websocat 等工具。
 
+WebVPN 连接 WebSocket 不太稳定，尽量使用 [zju-connect](https://github.com/Mythologyli/zju-connect)。
+
 参考：[https://courses.zjusec.com/2024/extra/proxy/](https://courses.zjusec.com/2024/extra/proxy/)
 
 WebVPN 实现：[https://github.com/eWloYW8/ZJUWebVPN](https://github.com/eWloYW8/ZJUWebVPN)
