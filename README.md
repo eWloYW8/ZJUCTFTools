@@ -12,7 +12,7 @@ WebVPN 实现：[https://github.com/eWloYW8/ZJUWebVPN](https://github.com/eWloYW
 
 ### [Release](https://github.com/eWloYW8/ZJUCTFTools/releases)
 
-
+[![Build and Release](https://github.com/eWloYW8/ZJUCTFTools/actions/workflows/build.yml/badge.svg)](https://github.com/eWloYW8/ZJUCTFTools/actions/workflows/build.yml)
 
 ### Build from source
 
